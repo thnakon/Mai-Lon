@@ -1,6 +1,12 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { FileText, Briefcase, Sparkles, ArrowRight, Download, Eye } from "lucide-react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Career Launchpad",
+  description: "สร้างเรซูเม่ และค้นหางานที่ใช่ด้วย AI",
+};
 
 const resumeTemplates = [
   { id: 1, name: "Clean Modern", preview: "🎨" },

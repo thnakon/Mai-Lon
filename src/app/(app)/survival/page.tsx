@@ -1,6 +1,12 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus, PiggyBank, Tag, TrendingUp, TrendingDown } from "lucide-react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Survival Kit",
+  description: "จัดการงบประมาณ รายจ่าย และรวมส่วนลดสำหรับนักศึกษา",
+};
 
 const expenseCategories = [
   { name: "🍜 อาหาร", amount: 2450, color: "bg-orange-400" },

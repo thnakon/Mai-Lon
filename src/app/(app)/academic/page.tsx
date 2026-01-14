@@ -1,6 +1,12 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { FileAudio, Quote, Calendar, ArrowRight, Mic, Upload } from "lucide-react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Academic Genius",
+  description: "AI สรุปเลคเชอร์ สร้างบรรณานุกรม และจัดการตารางเรียน",
+};
 
 const features = [
   {

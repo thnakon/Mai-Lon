@@ -15,7 +15,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Mai Lon | ไม่หลอน - Student Super App",
+  title: {
+    default: "Mai Lon | ไม่หลอน - Student Super App",
+    template: "%s | Mai Lon",
+  },
   description: "Super App สำหรับนักศึกษา ช่วยให้ไม่หลอนกับการเรียน การสอบ และการใช้ชีวิต",
   keywords: ["student", "app", "study", "thai", "นักศึกษา", "เรียน", "สอบ"],
 };

@@ -2,6 +2,12 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { GraduationCap, Users, Wallet, Rocket, ArrowRight, Sparkles } from "lucide-react";
 import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Dashboard",
+  description: "จัดการตารางเรียน งานกลุ่ม และรายจ่ายของคุณ",
+};
 
 const zones = [
   {

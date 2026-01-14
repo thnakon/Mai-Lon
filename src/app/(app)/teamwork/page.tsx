@@ -1,6 +1,12 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus, LayoutGrid, Bell, FolderOpen } from "lucide-react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Teamwork Savior",
+  description: "จัดการงานกลุ่ม แบ่งงานเพื่อน และแชร์ไฟล์อย่างเป็นระบบ",
+};
 
 const kanbanColumns = [
   { id: "todo", title: "📝 To Do", count: 3, color: "bg-slate-100 dark:bg-slate-800" },

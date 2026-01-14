@@ -12,6 +12,12 @@ import {
   CheckCircle,
   Star
 } from "lucide-react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "หน้าแรก",
+  description: "แพลตฟอร์มที่จะช่วยให้คุณจัดการทุกอย่างในชีวิตนักศึกษาได้อย่างง่ายดาย",
+};
 
 const zones = [
   {
