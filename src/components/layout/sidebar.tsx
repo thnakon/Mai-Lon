@@ -19,7 +19,7 @@ const zones = [
     id: "home",
     label: "หน้าแรก",
     labelEn: "Home",
-    href: "/",
+    href: "/dashboard",
     icon: Home,
   },
   {
