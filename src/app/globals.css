@@ -1,26 +1,152 @@
 @import "tailwindcss";
+@import "tw-animate-css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@custom-variant dark (&:is(.dark *));
+
+/* 
+  Mai-Lon Design System: Warm Minimalist Theme
+  ============================================
+  Colors designed to reduce eye strain and create a calm, focused environment
+*/
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+  
+  /* Custom Mai-Lon Colors */
+  --color-warm-orange: #EA580C;
+  --color-soft-orange: #FDBA74;
+  --color-warm-brown: #A67C52;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* 
+  Light Mode: Warm White Background
+  #FBFAF9 - อบอุ่น ไม่แยงตา 
+*/
+:root {
+  --radius: 0.75rem;
+  --background: #FBFAF9;
+  --foreground: #3E3E3E;
+  --card: #FFFFFF;
+  --card-foreground: #3E3E3E;
+  --popover: #FFFFFF;
+  --popover-foreground: #3E3E3E;
+  --primary: #EA580C;
+  --primary-foreground: #FFFFFF;
+  --secondary: #FDBA74;
+  --secondary-foreground: #3E3E3E;
+  --muted: #F5F4F3;
+  --muted-foreground: #6B6B6B;
+  --accent: #FFF7ED;
+  --accent-foreground: #EA580C;
+  --destructive: #DC2626;
+  --border: #E8E6E4;
+  --input: #E8E6E4;
+  --ring: #EA580C;
+  --chart-1: #EA580C;
+  --chart-2: #FDBA74;
+  --chart-3: #A67C52;
+  --chart-4: #78716C;
+  --chart-5: #D6D3D1;
+  --sidebar: #FBFAF9;
+  --sidebar-foreground: #3E3E3E;
+  --sidebar-primary: #EA580C;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #FFF7ED;
+  --sidebar-accent-foreground: #EA580C;
+  --sidebar-border: #E8E6E4;
+  --sidebar-ring: #EA580C;
+}
+
+/* 
+  Dark Mode: Deep Charcoal
+  #121212 - ดำสนิทแต่มีมิติ
+*/
+.dark {
+  --background: #121212;
+  --foreground: #E5E5E5;
+  --card: #1E1E1E;
+  --card-foreground: #E5E5E5;
+  --popover: #1E1E1E;
+  --popover-foreground: #E5E5E5;
+  --primary: #EA580C;
+  --primary-foreground: #FFFFFF;
+  --secondary: #FDBA74;
+  --secondary-foreground: #121212;
+  --muted: #2A2A2A;
+  --muted-foreground: #A1A1A1;
+  --accent: #2D1F16;
+  --accent-foreground: #FDBA74;
+  --destructive: #EF4444;
+  --border: #2E2E2E;
+  --input: #2E2E2E;
+  --ring: #EA580C;
+  --chart-1: #EA580C;
+  --chart-2: #FDBA74;
+  --chart-3: #A67C52;
+  --chart-4: #78716C;
+  --chart-5: #44403C;
+  --sidebar: #1E1E1E;
+  --sidebar-foreground: #E5E5E5;
+  --sidebar-primary: #EA580C;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: #2D1F16;
+  --sidebar-accent-foreground: #FDBA74;
+  --sidebar-border: #2E2E2E;
+  --sidebar-ring: #EA580C;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Smooth theme transitions */
+@layer utilities {
+  .theme-transition {
+    @apply transition-colors duration-300 ease-in-out;
+  }
 }
