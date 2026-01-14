@@ -98,9 +98,9 @@ export function LandingNavbar() {
               </Button>
             )}
 
-            {/* Sign In Button - Pill shape like Vexly */}
+            {/* Sign In Button - Pill shape like Vexly - Sleeker version */}
             <Link href="/login">
-              <Button className="group bg-[#C27803] hover:bg-[#A36502] text-white px-6 py-5 h-auto rounded-full font-bold shadow-lg transition-all duration-300 active:scale-[0.98] leading-none">
+              <Button className="group bg-[#C27803] hover:bg-[#A36502] text-white px-5 h-10 rounded-full font-semibold shadow-lg transition-all duration-300 active:scale-[0.98]">
                 {currentLang === "th" ? "เริ่มเลย" : "Sign In"}
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
               </Button>
