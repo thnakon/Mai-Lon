@@ -1,10 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useTheme } from "next-themes";
-import { Sun, Moon, Globe, ArrowRight } from "lucide-react";
+import { Sun, Moon, Globe, ArrowRight, LayoutGrid } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { createClient } from "@/lib/supabase/client";
+import { useLanguage } from "@/components/providers/language-provider";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,46 +22,71 @@ const languages = [
 
 const navLinks = [
   { href: "#features", labelTh: "ฟีเจอร์", labelEn: "Features" },
-  { href: "#zones", labelTh: "โซนต่างๆ", labelEn: "Zones" },
-  { href: "#about", labelTh: "เกี่ยวกับ", labelEn: "About" },
-  { href: "#help", labelTh: "ช่วยเหลือ", labelEn: "Help" },
+  { href: "#pricing", labelTh: "ราคา", labelEn: "Pricing" },
+  { href: "#faq", labelTh: "คำถาม", labelEn: "FAQ" },
+  { href: "#community", labelTh: "ชุมชน", labelEn: "Community" },
 ];
 
 export function LandingNavbar() {
-  const [currentLang, setCurrentLang] = useState<"th" | "en">("th");
+  const { language, setLanguage } = useLanguage();
   const { theme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const supabase = createClient();
 
   useEffect(() => {
     setMounted(true);
-  }, []);
+    
+    const checkUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      setIsLoggedIn(!!user);
+    };
+    
+    checkUser();
+  }, [supabase.auth]);
 
   const ThemeIcon = theme === "dark" ? Moon : Sun;
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/60 backdrop-blur-xl border-b border-border/40 font-sans">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10">
-        <div className="flex items-center justify-between h-20">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/60 backdrop-blur-xl border-b border-border/40 font-line-seed">
+      <div className="max-w-5xl mx-auto px-6 sm:px-10">
+        <div className="flex items-center justify-between h-16">
           {/* Left: Logo & Nav Links */}
           <div className="flex items-center gap-12">
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center shadow-lg transition-transform duration-300 group-hover:scale-105 overflow-hidden border-2 border-white/20">
-                <span className="text-xl">🧘</span>
+            <button 
+              onClick={() => {
+                const hero = document.getElementById('hero');
+                if (hero) hero.scrollIntoView({ behavior: 'smooth' });
+                else window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="flex items-center gap-3 group cursor-pointer"
+            >
+              <div className="w-10 h-10 rounded-full overflow-hidden shadow-lg transition-transform duration-300 group-hover:scale-105 border-2 border-white/20">
+                <Image 
+                  src="/logo.png" 
+                  alt="Mai Lon Logo" 
+                  width={40} 
+                  height={40}
+                  className="w-full h-full object-cover"
+                />
               </div>
               <span className="font-bold text-xl text-foreground tracking-tight">Mai Lon</span>
-            </Link>
+            </button>
 
             {/* Nav Links - Hidden on Mobile */}
             <div className="hidden md:flex items-center gap-8">
               {navLinks.map((link) => (
-                <Link
+                <button
                   key={link.href}
-                  href={link.href}
+                  onClick={() => {
+                    const el = document.querySelector(link.href);
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }}
                   className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors"
                 >
-                  {currentLang === "th" ? link.labelTh : link.labelEn}
-                </Link>
+                  {language === "th" ? link.labelTh : link.labelEn}
+                </button>
               ))}
             </div>
           </div>
@@ -76,8 +104,8 @@ export function LandingNavbar() {
                 {languages.map((lang) => (
                   <DropdownMenuItem
                     key={lang.code}
-                    onClick={() => setCurrentLang(lang.code as "th" | "en")}
-                    className={`rounded-xl px-3 py-2 text-sm font-medium transition-colors cursor-pointer ${currentLang === lang.code ? "bg-primary/10 text-primary" : "hover:bg-muted"}`}
+                    onClick={() => setLanguage(lang.code as "th" | "en")}
+                    className={`rounded-xl px-3 py-2 text-sm font-medium transition-colors cursor-pointer ${language === lang.code ? "bg-primary/10 text-primary" : "hover:bg-muted"}`}
                   >
                     <span className="mr-2 text-base">{lang.flag}</span>
                     {lang.label}
@@ -98,16 +126,26 @@ export function LandingNavbar() {
               </Button>
             )}
 
-            {/* Sign In Button - Pill shape like Vexly - Sleeker version */}
-            <Link href="/login">
-              <Button className="group bg-primary hover:bg-primary/90 text-white px-5 h-10 rounded-full font-semibold shadow-lg transition-all duration-300 active:scale-[0.98]">
-                {currentLang === "th" ? "เริ่มเลย" : "Sign In"}
-                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
+            {/* Sign In / Dashboard Button */}
+            <Button asChild className="group bg-primary hover:bg-primary/90 text-white px-5 h-10 rounded-full font-semibold shadow-lg transition-all duration-300 active:scale-[0.98]">
+              <Link href={isLoggedIn ? "/dashboard" : "/login"}>
+                {isLoggedIn ? (
+                  <>
+                    <LayoutGrid className="mr-2 h-4 w-4" />
+                    {language === "th" ? "แดชบอร์ด" : "Dashboard"}
+                  </>
+                ) : (
+                  <>
+                    {language === "th" ? "เริ่มเลย" : "Sign In"}
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </>
+                )}
+              </Link>
+            </Button>
           </div>
         </div>
       </div>
     </nav>
   );
 }
+

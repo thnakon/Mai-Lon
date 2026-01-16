@@ -1,8 +1,13 @@
+import { LanguageProvider } from "@/components/providers/language-provider";
+
 export default function LandingLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // Landing page doesn't need the app sidebar
-  return <>{children}</>;
+  return (
+    <LanguageProvider>
+      {children}
+    </LanguageProvider>
+  );
 }

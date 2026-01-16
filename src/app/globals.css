@@ -52,9 +52,9 @@
   --radius-4xl: calc(var(--radius) + 16px);
   
   /* Custom Mai-Lon Colors */
-  --color-warm-orange: #EA580C;
-  --color-soft-orange: #FDBA74;
-  --color-warm-brown: #A67C52;
+  --color-warm-orange: #D97706;
+  --color-soft-orange: #FBBF24;
+  --color-warm-brown: #92400E;
 }
 
 /* 
@@ -69,18 +69,18 @@
   --card-foreground: #3E3E3E;
   --popover: #FFFFFF;
   --popover-foreground: #3E3E3E;
-  --primary: #EA580C;
+  --primary: #D97706;
   --primary-foreground: #FFFFFF;
-  --secondary: #FDBA74;
+  --secondary: #FBBF24;
   --secondary-foreground: #3E3E3E;
   --muted: #F5F4F3;
   --muted-foreground: #6B6B6B;
-  --accent: #FFF7ED;
-  --accent-foreground: #EA580C;
+  --accent: #FEF3C7;
+  --accent-foreground: #D97706;
   --destructive: #DC2626;
   --border: #E8E6E4;
   --input: #E8E6E4;
-  --ring: #EA580C;
+  --ring: #D97706;
   --chart-1: #EA580C;
   --chart-2: #FDBA74;
   --chart-3: #A67C52;
@@ -88,10 +88,10 @@
   --chart-5: #D6D3D1;
   --sidebar: #FBFAF9;
   --sidebar-foreground: #3E3E3E;
-  --sidebar-primary: #EA580C;
+  --sidebar-primary: #D97706;
   --sidebar-primary-foreground: #FFFFFF;
-  --sidebar-accent: #FFF7ED;
-  --sidebar-accent-foreground: #EA580C;
+  --sidebar-accent: #FEF3C7;
+  --sidebar-accent-foreground: #D97706;
   --sidebar-border: #E8E6E4;
   --sidebar-ring: #EA580C;
 }
@@ -107,14 +107,14 @@
   --card-foreground: #E5E5E5;
   --popover: #1E1E1E;
   --popover-foreground: #E5E5E5;
-  --primary: #EA580C;
+  --primary: #D97706;
   --primary-foreground: #FFFFFF;
-  --secondary: #FDBA74;
+  --secondary: #FBBF24;
   --secondary-foreground: #121212;
   --muted: #2A2A2A;
   --muted-foreground: #A1A1A1;
-  --accent: #2D1F16;
-  --accent-foreground: #FDBA74;
+  --accent: #33230F;
+  --accent-foreground: #FBBF24;
   --destructive: #EF4444;
   --border: #2E2E2E;
   --input: #2E2E2E;
@@ -140,8 +140,13 @@
   }
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+    font-family: var(--font-thai), var(--font-geist-sans), -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
   }
+}
+
+/* Thai Font Utility */
+.font-line-seed {
+  font-family: var(--font-thai), sans-serif;
 }
 
 /* Smooth theme transitions */
